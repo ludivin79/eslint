@@ -6103,6 +6103,6 @@ describe("shouldUseFlatConfig", () => {
     });
 
     describe("when the env variable `ESLINT_USE_FLAT_CONFIG` is unset", () => {
-        testShouldUseFlatConfig(true, false);
+        testShouldUseFlatConfig(true, true);
     });
 });
