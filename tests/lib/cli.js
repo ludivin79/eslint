@@ -329,7 +329,7 @@ describe("cli", () => {
             describe("when given an invalid built-in formatter name", () => {
                 it(`should execute with error: with configType:${configType}`, async () => {
                     const filePath = getFixturePath("passing.js");
-                    const exit = await cli.execute(`-f fakeformatter ${filePath} ${flag}`, null, configType === "flat");
+                    const exit = await cli.execute(`-f fakeformatter ${filePath} ${flag}`, null, useFlatConfig);
 
                     assert.strictEqual(exit, 2);
                 });
@@ -339,7 +339,7 @@ describe("cli", () => {
                 it(`should execute without any errors with configType:${configType}`, async () => {
                     const formatterPath = getFixturePath("formatters", "simple.js");
                     const filePath = getFixturePath("passing.js");
-                    const exit = await cli.execute(`-f ${formatterPath} ${filePath} ${flag}`, null, configType === "flat");
+                    const exit = await cli.execute(`-f ${formatterPath} ${filePath} ${flag}`, null, useFlatConfig);
 
                     assert.strictEqual(exit, 0);
                 });
@@ -370,7 +370,7 @@ describe("cli", () => {
                 it(`should execute without any errors with configType:${configType}`, async () => {
                     const formatterPath = getFixturePath("formatters", "async.js");
                     const filePath = getFixturePath("passing.js");
-                    const exit = await cli.execute(`-f ${formatterPath} ${filePath} --no-config-lookup`);
+                    const exit = await cli.execute(`-f ${formatterPath} ${filePath} ${flag}`, null, useFlatConfig);
 
                     assert.strictEqual(log.info.getCall(0).args[0], "from async formatter");
                     assert.strictEqual(exit, 0);
